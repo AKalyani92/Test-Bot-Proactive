@@ -20,6 +20,15 @@ server.post('/api/messages', connector.listen());
 
 
 
+/*
+// Root dialog for entry point in application
+bot.dialog('/', [
+    function (session,args, next) {
+        session.send("Hi");
+    }
+
+]);*/
+
 // send simple notification
 function sendProactiveMessage(address) {
     var msg = new builder.Message().address(address);
@@ -39,9 +48,11 @@ next();
 }
 );
 
+// root dialog
 bot.dialog('/', function(session, args) {
 
     savedAddress = session.message.address;
+    session.send(savedAddress);
 
     var message = 'Hello! In a few seconds I\'ll send you a message proactively to demonstrate how bots can initiate messages.';
     session.send(message);
@@ -54,16 +65,4 @@ bot.dialog('/', function(session, args) {
         sendProactiveMessage(savedAddress);
 }, 5000);
 });
-
-
-
-// Root dialog for entry point in application
-/*bot.dialog('/', [
-    function (session,args, next) {
-        session.send("Hi");
-    }
-
-]);*/
-
-
 
