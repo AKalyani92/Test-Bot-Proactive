@@ -20,35 +20,12 @@ server.post('/api/messages', connector.listen());
 
 
 
-/*
+
 // Root dialog for entry point in application
 bot.dialog('/', [
     function (session,args, next) {
-        session.send("Hi");
+        session.send(session.message.address);
     }
 
-]);*/
-
-// send simple notification
-function sendProactiveMessage(address) {
-    var msg = new builder.Message().address(address);
-    msg.text('Hello, this is a notification');
-    msg.textLocale('en-US');
-    bot.send(msg);
-}
-
-var savedAddress;
-server.post('/api/messages', connector.listen());
-
-// Do GET this endpoint to delivey a notification
-
-
-// root dialog
-bot.dialog('/', function(session, args) {
-
-    savedAddress = session.message.address;
-    session.send(savedAddress);
-
-
-});
+]);
 
