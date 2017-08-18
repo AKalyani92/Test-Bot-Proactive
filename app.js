@@ -25,6 +25,9 @@ server.post('/api/messages', connector.listen());
 bot.dialog('/', [
     function (session,args, next) {
         session.send("hi");
+        session.send(session);
+        session.send(session.message);
+        session.send(session.message.address);
     }
 
 ]);
